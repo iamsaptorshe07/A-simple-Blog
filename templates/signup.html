@@ -1,0 +1,39 @@
+{% extends 'basetemplate.html' %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+    </head>
+    <body>
+        {% block body %}
+        <center>
+            <form action="/accounts/signup" method="POST">
+                {% csrf_token %}
+             <input type="name" placeholder="Full Name" name="name"> <br>
+             <input type="email" placeholder="Email" name='email'> <br>
+             Gender : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             <select name='gender'>
+                 <option value="Male">Male</option>
+                 <option value="Female">Female</option>
+                 <option value="Others">Others</option>
+             </select> <br>
+             <input type="password" name='password' placeholder="Password"> <br>
+             <button type="submit">SUBMIT</button>
+         </form>
+         {% if messages %}
+            {% for message in messages %}
+            {{message}}
+            {% endfor %}
+         {% endif %}
+        </center>
+        {% endblock body %}
+    </body>
+</html>
